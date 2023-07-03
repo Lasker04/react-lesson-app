@@ -13,6 +13,7 @@ import { IconButton, Radio } from '@mui/material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { CloseIcon } from '../atoms/icons/CloseIcon'
+import { RadioListItem } from './RadioListItem'
 
 type Props = {
   dialogState: boolean
@@ -108,17 +109,18 @@ export const Dialog = ({ dialogState, onClose, selectedValue }: Props) => {
         <DialogContent sx={{ height: '450px' }}>
           <List>
             {combinedProducts.map((product) => (
-              <ListItem
-                key={product.id}
-                sx={{ display: 'flex', justifyContent: 'space-between' }}
-                onClick={() => setSelectedProduct(product.id)}
-              >
-                <Box>
-                  <Radio checked={product.id === selectedProduct} />
-                  {product.name}
-                </Box>
-                <Box>{product.items} 個</Box>
-              </ListItem>
+              // <ListItem
+              //   key={product.id}
+              //   sx={{ display: 'flex', justifyContent: 'space-between' }}
+              //   onClick={() => setSelectedProduct(product.id)}
+              // >
+              //   <Box>
+              //     <Radio checked={product.id === selectedProduct} />
+              //     {product.name}
+              //   </Box>
+              //   <Box>{product.items} 個</Box>
+              // </ListItem>
+              <RadioListItem key={product.id} product={product} setSelectedProduct={setSelectedProduct} isActive={selectedProduct === product.id} />
             ))}
           </List>
         </DialogContent>
